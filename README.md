@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Smart Bookmark App
+A simple bookmark manager built with Next.js, Supabase, and Tailwind CSS.
+Users can log in with Google, add bookmarks, delete bookmarks, and see updates in real-time.
 
-## Getting Started
+## Live Demo
+https://smart-bookmark-app-six-gules.vercel.app/
 
-First, run the development server:
+## GitHub Repository
+https://github.com/Tannu-2001/Smart-Bookmark-app
 
-```bash
+## Features
+- Google OAuth login using Supabase
+- Add bookmarks (Title + URL)
+- Delete bookmarks
+- Private bookmarks per user
+- Real-time updates (no page refresh required)
+- Responsive UI using Tailwind CSS
+- Deployed on Vercel
+
+
+## Tech Stack
+- Next.js (App Router)
+- Supabase (Authentication + Database + Realtime)
+- Tailwind CSS
+- Vercel (Deployment)
+
+## Problems Faced and Solutions
+
+### Problem 1: Google login was redirecting back to login page
+
+**Cause:**
+Redirect URL was not configured in Supabase.
+
+**Solution:**
+Added redirect URL in Supabase:
+Authentication → URL Configuration
+
+Added:http://localhost:3000/dashboard
+https://smart-bookmark-app-six-gules.vercel.app/dashboard
+
+### Problem 2: Bookmark add/delete required manual refresh
+
+**Cause:**
+Supabase Realtime was not enabled properly.
+
+**Solution:**
+
+Enabled realtime in Supabase:
+
+Database → Tables → bookmarks → Edit
+Enable Realtime ON
+
+Also added realtime subscription in dashboard page.
+
+### Problem 3: Vercel deployed default Next.js page instead of app
+
+**Cause:**
+Correct project files were not pushed to GitHub.
+
+**Solution:**
+Pushed the full project including:
+src/app
+src/components
+src/lib
+
+
+Then Vercel redeployed automatically.
+
+### Problem 4: Google login was auto-logging without account selection
+
+**Solution:**
+Added:
+
+```js
+prompt: "select_account"
+
+
+in LoginButton.
+Problem 5: Tailwind CSS not applied initially
+
+Solution:
+
+Installed and configured Tailwind properly:
+
+tailwind.config.ts
+globals.css
+
+How to Run Locally
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Environment Variables
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create .env.local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+NEXT_PUBLIC_SUPABASE_URL=your_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_key
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Assignment Status - All requirements completed successfully.
 
-## Learn More
+Author
 
-To learn more about Next.js, take a look at the following resources:
+Tannu Kumari
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
