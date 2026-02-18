@@ -70,11 +70,8 @@ Then Vercel redeployed automatically.
 
 **Solution:**
 Added:
-
 ```js
 prompt: "select_account"
-
-
 in LoginButton.
 Problem 5: Tailwind CSS not applied initially
 
