@@ -40,17 +40,17 @@ https://smart-bookmark-app-six-gules.vercel.app/dashboard
 
 ### Problem 2: Bookmark add/delete required manual refresh
 
-**Cause:**
-Supabase Realtime was not enabled properly.
+**Cause:**  
+UI was not updating automatically after database changes.
 
-**Solution:**
+**Solution:**  
+Enabled Supabase Realtime and added realtime subscription in dashboard.
 
-Enabled realtime in Supabase:
+Supabase Settings:
+Database → Tables → bookmarks → Enable Realtime ON
 
-Database → Tables → bookmarks → Edit
-Enable Realtime ON
-
-Also added realtime subscription in dashboard page.
+Code Solution:
+Used Supabase realtime channel to listen for INSERT and DELETE events and update state instantly.
 
 ### Problem 3: Vercel deployed default Next.js page instead of app
 
@@ -73,7 +73,8 @@ Added:
 ```js
 prompt: "select_account"
 in LoginButton.
-Problem 5: Tailwind CSS not applied initially
+
+### Problem 5: Tailwind CSS not applied initially
 
 Solution:
 
@@ -82,7 +83,7 @@ Installed and configured Tailwind properly:
 tailwind.config.ts
 globals.css
 
-How to Run Locally
+## How to Run Locally
 npm install
 npm run dev
 Environment Variables
